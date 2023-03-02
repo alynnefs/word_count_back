@@ -21,6 +21,11 @@ def test_two_words():
     assert "2" == response
 
 
+def test_duplicate_word():
+    response = count_the_words("hello word word")
+    assert "2" == response
+
+
 def test_space_start_and_end():
     response = count_the_words(" an apple ")
     assert "2" == response
@@ -41,4 +46,4 @@ def test_many_words():
         + "dolore eu fugiat nulla pariatur."
     )
 
-    assert "52" == response
+    assert "48" == response
