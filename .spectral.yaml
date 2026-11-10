@@ -1,2 +1,2 @@
 extends:
-  - "@stoplight/spectral-rulesets/oas"
+  - "./node_modules/@stoplight/spectral-rulesets/dist/oas/index.js"
