@@ -43,6 +43,7 @@ jobs:
     needs: test
     steps:
       - uses: actions/checkout@v4
-      - uses: stoplight/spectral-action@v0.8.11
-        with:
-          file_glob: "docs/openapi.yaml"
+      - name: Validate OpenAPI with Spectral
+        run: |
+          npm install -g @stoplight/spectral-cli
+          spectral lint docs/openapi.yaml
