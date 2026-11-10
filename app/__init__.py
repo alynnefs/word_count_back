@@ -8,7 +8,7 @@ from app.metrics import metrics
 def create_app():
     setup_logging()
     app = Flask(__name__)
-    CORS(app, support_credentials=True)
+    CORS(app, supports_credentials=True)
     metrics.init_app(app)
 
     from app.routes import bp

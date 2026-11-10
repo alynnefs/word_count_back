@@ -1,6 +1,6 @@
 FROM python:3.9
 
-ENV FLASK_ENV=production
+ENV FLASK_DEBUG=0
 ENV PORT=5000
 
 RUN apt-get update && apt-get upgrade -y
