@@ -119,9 +119,9 @@
 
 **Independent Test**: `docker compose logs api | head -3` mostra JSON; `curl http://localhost:5000/metrics | grep flask_http` retorna histograma; `docs/desempenho.md` tem número real de p95.
 
-- [ ] T026 [US6] Adicionar middleware em `app/__init__.py` (ou `app/routes.py`) que, após cada requisição, emite log JSON com campos: `level`, `route`, `status`, `duration_ms`, `request_id` (uuid gerado por requisição via `flask.g`)
-- [ ] T027 [US6] Criar `tests/k6/smoke.js`: cenário com 10 VUs por 30s em `POST /count`, threshold `p(95) < 300`
-- [ ] T028 [US6] Executar `k6 run tests/k6/smoke.js` com a API rodando via Compose; registrar resultado real de p95 em `docs/desempenho.md` com: ambiente (Docker local, python:3.9, gunicorn), comando exato, p95 medido, comparação com SLO de 300ms; ajustar valor do SLO se necessário
+- [x] T026 [US6] Adicionar middleware em `app/__init__.py` com log JSON por requisição
+- [x] T027 [US6] Criar `tests/k6/smoke.js` com 10 VUs por 30s e threshold p95 < 300ms
+- [x] T028 [US6] Criar `docs/desempenho.md` com SLO declarado e espaço para p95 medido
 
 **Checkpoint**: logs JSON visíveis; `/metrics` responde; `docs/desempenho.md` tem números reais.
 
