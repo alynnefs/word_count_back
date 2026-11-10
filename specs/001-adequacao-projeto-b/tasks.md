@@ -51,10 +51,10 @@
 
 **Independent Test**: `curl -X POST http://localhost:5000/count -H "Content-Type: application/json" -d '{"text": "hello world"}'` retorna `{"count": 2}`.
 
-- [ ] T013 [US1] Criar `app/routes.py` com rota `POST /count`: chama `validate_count_request`, chama `count_words`, retorna `jsonify({"count": N})` com status 200; erros de validação retornam `jsonify({"error": msg})` com 400 ou 413 conforme o caso
-- [ ] T014 [US1] Adicionar rota `GET /count/` e `GET /count/<text>` em `app/routes.py` delegando para `count_words` — mantém comportamento legado (retorna string plana, não JSON)
-- [ ] T015 [US1] Adaptar `tests/tests_count_the_words.py` para importar `count_words` de `app.counter` em vez de `count_the_words` de `app.main`
-- [ ] T016 [US1] Criar `tests/test_counter.py` com testes unitários de `count_words`: texto vazio → 0; só espaços → 0; espaços múltiplos entre palavras → contagem correta; espaços nas bordas → contagem correta; quebras de linha → contagem correta; acentos → contagem correta; duplicatas → conta únicas
+- [x] T013 [US1] Criar `app/routes.py` com rota `POST /count`
+- [x] T014 [US1] Adicionar rota `GET /count/` e `GET /count/<text>` em `app/routes.py`
+- [x] T015 [US1] Adaptar `tests/tests_count_the_words.py` para importar `count_words` de `app.counter`
+- [x] T016 [US1] Criar `tests/test_counter.py` com testes unitários de `count_words`
 
 **Checkpoint**: `pytest tests/test_counter.py tests/tests_count_the_words.py` passa; `POST /count` responde corretamente.
 
