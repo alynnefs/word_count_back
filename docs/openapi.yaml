@@ -1,0 +1,94 @@
+openapi: "3.0.3"
+info:
+  title: word_count_back
+  description: API para contagem de palavras únicas em um texto.
+  version: "1.0.0"
+
+paths:
+  /count:
+    post:
+      summary: Contar palavras únicas em um texto
+      operationId: postCount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+                  maxLength: 100000
+                  example: "hello world hello"
+      responses:
+        "200":
+          description: Contagem realizada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    minimum: 0
+                    example: 2
+        "400":
+          description: Corpo ausente, campo text ausente ou não é string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "413":
+          description: Texto excede o limite de 100000 caracteres
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /count/{text}:
+    get:
+      summary: Contar palavras únicas (depreciado)
+      description: >
+        Endpoint legado. Mantido por compatibilidade com o front-end.
+        Migrar para POST /count.
+      operationId: getCount
+      deprecated: true
+      parameters:
+        - name: text
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "hello world"
+      responses:
+        "200":
+          description: Contagem como string plana
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "2"
+
+  /metrics:
+    get:
+      summary: Métricas Prometheus
+      description: Expõe histograma de latência por rota no formato Prometheus.
+      operationId: getMetrics
+      responses:
+        "200":
+          description: Métricas no formato text/plain Prometheus
+          content:
+            text/plain:
+              schema:
+                type: string
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "campo 'text' obrigatório"
