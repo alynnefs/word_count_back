@@ -17,11 +17,11 @@
 
 **Purpose**: Preparar dependências, arquivos de configuração e estrutura de pastas antes de qualquer implementação.
 
-- [ ] T001 Adicionar `gunicorn`, `prometheus-flask-exporter`, `python-json-logger` em `requirements.txt`
-- [ ] T002 Criar `requirements-dev.txt` com `pytest-cov`, `flake8`, `Flake8-pyproject`
-- [ ] T003 [P] Criar `pyproject.toml` com seções `[tool.flake8]` (max-line-length=88, exclude=.git,__pycache__) e `[tool.pytest.ini_options]` (addopts = "--cov=app --cov-fail-under=80")
-- [ ] T004 [P] Criar `.env.example` com variáveis `FLASK_ENV`, `PORT=5000`, `MAX_TEXT_LENGTH=100000`, `LOG_LEVEL=INFO`
-- [ ] T005 [P] Verificar que `.env` está listado em `.gitignore`; adicionar se ausente
+- [x] T001 Adicionar `gunicorn`, `prometheus-flask-exporter`, `python-json-logger` em `requirements.txt`
+- [x] T002 Criar `requirements-dev.txt` com `pytest-cov`, `flake8`, `Flake8-pyproject`
+- [x] T003 [P] Criar `pyproject.toml` com seções `[tool.flake8]` (max-line-length=88, exclude=.git,__pycache__) e `[tool.pytest.ini_options]` (addopts = "--cov=app --cov-fail-under=80")
+- [x] T004 [P] Criar `.env.example` com variáveis `FLASK_ENV`, `PORT=5000`, `MAX_TEXT_LENGTH=100000`, `LOG_LEVEL=INFO`
+- [x] T005 [P] Verificar que `.env` está listado em `.gitignore`; adicionar se ausente
 
 **Checkpoint**: dependências e configuração prontas — nenhum código de app ainda.
 
