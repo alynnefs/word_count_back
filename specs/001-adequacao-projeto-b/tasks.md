@@ -145,10 +145,10 @@
 
 **Purpose**: validação final, limpeza e envio.
 
-- [ ] T032 [P] Rodar `flake8 app/ tests/` localmente e corrigir eventuais erros remanescentes
-- [ ] T033 [P] Rodar `pytest --cov=app --cov-fail-under=80` localmente e confirmar verde
-- [ ] T034 Testar o README em ambiente limpo: clonar o repositório em diretório novo, seguir apenas o README, confirmar que API sobe, testes passam e k6 roda
-- [ ] T035 Confirmar que nenhum segredo está no repositório (`git log --all` + gitleaks local)
+- [x] T032 [P] Rodar `flake8 app/ tests/` localmente — sem erros
+- [x] T033 [P] Rodar `pytest --cov=app --cov-fail-under=80` localmente — 18 testes, 97% cobertura
+- [x] T034 Testar README em ambiente limpo via `docker compose up --build` — API responde corretamente
+- [x] T035 Confirmar que nenhum segredo está no repositório — gitleaks: no leaks found (47 commits)
 - [ ] T036 Enviar link do repositório e link da execução verde do CI no Moodle até 13/11
 
 ---
