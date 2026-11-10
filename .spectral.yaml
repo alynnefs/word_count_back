@@ -1,2 +1,2 @@
 extends:
-  - "@stoplight/spectral-oas"
+  - "@stoplight/spectral-rulesets/oas"
