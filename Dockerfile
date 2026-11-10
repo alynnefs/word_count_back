@@ -1,5 +1,8 @@
 FROM python:3.9
 
+ENV FLASK_DEBUG=0
+ENV PORT=5000
+
 RUN apt-get update && apt-get upgrade -y
 
 COPY requirements.txt requirements.txt
@@ -9,4 +12,4 @@ WORKDIR /back
 COPY . /back
 
 EXPOSE 5000
-ENTRYPOINT flask --app app/main run --host "0.0.0.0"
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app.main:app"]

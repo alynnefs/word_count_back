@@ -33,13 +33,13 @@
 
 **⚠️ CRITICAL**: nenhuma user story pode começar antes desta fase.
 
-- [ ] T006 Criar `app/counter.py` com função `count_words(text: str) -> int`: strip, split por whitespace, filtrar vazios, remover duplicatas, retornar len — comportamento idêntico ao atual de `app/main.py`
-- [ ] T007 Criar `app/validators.py` com função `validate_count_request(data: dict) -> str` que valida presença e tipo do campo `text` (deve ser str) e tamanho máximo de `MAX_TEXT_LENGTH` (lido de `os.environ`, padrão 100000); levanta `ValueError` com mensagem descritiva em cada caso de falha
-- [ ] T008 [P] Criar `app/logging_config.py` que configura `python-json-logger` no logger raiz com campos `level`, `route`, `status`, `duration`, `request_id`; expõe função `setup_logging()`
-- [ ] T009 [P] Criar `app/metrics.py` que inicializa `PrometheusMetrics` do `prometheus-flask-exporter`; expõe instância `metrics` para ser registrada no app
-- [ ] T010 Reescrever `app/__init__.py` como factory: função `create_app()` que instancia Flask, registra CORS, chama `setup_logging()`, registra `metrics`, e importa rotas de `app/routes.py`
-- [ ] T011 Reescrever `app/main.py` como ponto de entrada: `app = create_app()` — compatível com `gunicorn app.main:app`
-- [ ] T012 Atualizar `Dockerfile`: substituir `ENTRYPOINT flask --app app/main run --host "0.0.0.0"` por `CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app.main:app"]`; adicionar `ENV FLASK_ENV=production PORT=5000`
+- [x] T006 Criar `app/counter.py` com função `count_words(text: str) -> int`: strip, split por whitespace, filtrar vazios, remover duplicatas, retornar len — comportamento idêntico ao atual de `app/main.py`
+- [x] T007 Criar `app/validators.py` com função `validate_count_request(data: dict) -> str` que valida presença e tipo do campo `text` (deve ser str) e tamanho máximo de `MAX_TEXT_LENGTH` (lido de `os.environ`, padrão 100000); levanta `ValueError` com mensagem descritiva em cada caso de falha
+- [x] T008 [P] Criar `app/logging_config.py` que configura `python-json-logger` no logger raiz com campos `level`, `route`, `status`, `duration`, `request_id`; expõe função `setup_logging()`
+- [x] T009 [P] Criar `app/metrics.py` que inicializa `PrometheusMetrics` do `prometheus-flask-exporter`; expõe instância `metrics` para ser registrada no app
+- [x] T010 Reescrever `app/__init__.py` como factory: função `create_app()` que instancia Flask, registra CORS, chama `setup_logging()`, registra `metrics`, e importa rotas de `app/routes.py`
+- [x] T011 Reescrever `app/main.py` como ponto de entrada: `app = create_app()` — compatível com `gunicorn app.main:app`
+- [x] T012 Atualizar `Dockerfile`: substituir `ENTRYPOINT flask --app app/main run --host "0.0.0.0"` por `CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app.main:app"]`; adicionar `ENV FLASK_ENV=production PORT=5000`
 
 **Checkpoint**: app sobe com `gunicorn app.main:app`, logs em JSON, `/metrics` responde.
 
