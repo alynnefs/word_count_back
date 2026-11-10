@@ -8,17 +8,16 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.9.21"
-      - run: pip install -r requirements-dev.txt
+          python-version: "3.9"
       - run: flake8 app/ tests/
 
   secrets-scan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,18 +27,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: lint
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.9.21"
-      - run: pip install -r requirements.txt -r requirements-dev.txt
+          python-version: "3.9"
       - run: pytest
 
   spectral:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: test
     steps:
       - uses: actions/checkout@v4
