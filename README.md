@@ -1,136 +1,82 @@
-[![Build Status](https://app.travis-ci.com/alynnefs/word_count_back.svg?token=hqbqCmyo5nLQPrVtRR4v&branch=main)](https://app.travis-ci.com/alynnefs/word_count_back)
+**Projeto B — Módulo 4**
 
-# Word Count - Back
+[![CI](https://github.com/alynnefs/word_count_back/actions/workflows/ci.yml/badge.svg)](https://github.com/alynnefs/word_count_back/actions/workflows/ci.yml)
 
-The project consists of getting a text passed by the front end and counting how many words it has.
+# Word Count — Back
 
-## Running with Docker
+API Flask que recebe um texto e retorna a contagem de palavras únicas.
 
-To create the docker image, run the following command in the project root:
+- Decisão de arquitetura: [ADR 0001](docs/adr/0001-decisao.md)
+- Contrato da API: [OpenAPI](docs/openapi.yaml)
+- Relatório de desempenho: [docs/desempenho.md](docs/desempenho.md)
 
-```
-docker image build -t cw_back .
-```
+## Como subir com Docker Compose
 
-The result should be
-
-![](https://i.imgur.com/7aUHiW2.png)
-
-After created, run the container with:
-
-
-```
-docker container run -d -p 5000:5000 cw_back
+```bash
+cp .env.example .env
+docker compose up --build -d
 ```
 
-To see if the container is running, just use the `docker container ls` command. The output should look something like this:
-    
-![](https://i.imgur.com/4EOHsSQ.png)
+> **macOS**: a porta 5000 é ocupada pelo AirPlay Receiver. Edite `.env` e defina `PORT=5001` antes de subir.
 
+Verificar que a API responde:
 
-## Running locally
+```bash
+curl http://localhost:5001/count/hello
+# esperado: 1
 
-### Specifications used in development
-
-Operating System: Ubuntu 20.04.5 LTS
-NPM: 9.2.0
-Docker: 20.10.21, build baeda1f
-Vue/cli: 5.0.8
-
-
-### How to run
-
-To create the virtual environment, run:
-
-```
-virtualenv --python=python3.9 .venv
+curl -X POST http://localhost:5001/count \
+  -H "Content-Type: application/json" \
+  -d '{"text": "hello world"}'
+# esperado: {"count": 2}
 ```
 
-To activate it:
+Para subir também o front-end:
 
-```
-source .venv/bin/activate
-```
-
-To install the dependencies:
-
-```
-pip install -r requirements.txt
+```bash
+docker compose --profile front up
 ```
 
-With everything installed, simply run the project in the root folder:
+## Como rodar os testes
 
-```
-flask --app app/main run
-```
-
-### Using the front
-
-> The front-end of this project and how to run it can be seen [at this link](https://github.com/alynnefs/word_count_front).
-
-In the browser, enter the link http://127.0.0.1:8080. The last IP number may change.
-
-Use the text box to count the number of words of the text you want.
-
-![](https://i.imgur.com/Co3Mwu7.png)
-
-You can add more than one space between words, either at the end or at the beginning. This will not change the number of words.
-
-![](https://i.imgur.com/x6lctZH.png)
-
-
-
-### Using cURL
-
-Examples of requests to be made on the terminal, with the container running:
-
-```
-curl 127.0.0.1:5000/count/apple
-curl 127.0.0.1:5000/count/an%20apple # %20 is because of the space between words
+```bash
+pip install -r requirements.txt -r requirements-dev.txt
+pytest
 ```
 
-## Tests
+Cobertura mínima exigida: 80% (aplicada automaticamente).
 
-### Testing at Travis CI
+## Como rodar o lint
 
-To see the tests that were run on Travis, just click [on this link](https://app.travis-ci.com/github/alynnefs/word_count_back) or the button at the top of this file. Whenever a commit is added to the main branch, Travis will run the tests again. In it you can see the history of the test execution:
-
-![](https://i.imgur.com/OPAoaIM.png)
-
-If there is an error, it tells you what it is.
-
-
-### Running the tests locally
-
-Considering that you are in the virtual environment and have the dependencies installed, just run:
-
-```
-pytest tests/*
+```bash
+flake8 app/ tests/
 ```
 
-The result will be:
+## Como rodar o smoke test k6
 
-![](https://i.imgur.com/UXkgZar.png)
+Com a API rodando via Compose:
 
-
-This command will run all the tests on all the files that are inside this folder. If you want to run only one of the tests, you can use this command as an example:
-
-```
-pytest tests/tests_count_the_words.py::test_many_words
+```bash
+k6 run tests/k6/smoke.js
 ```
 
-The result will be:
+O resultado reporta o p95 de latência e compara com o SLO declarado em [docs/desempenho.md](docs/desempenho.md).
 
-![](https://i.imgur.com/tt6t7pg.png)
+## Endpoints
 
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| POST | `/count` | Conta palavras únicas — corpo JSON `{"text": "..."}` |
+| GET | `/count/<text>` | ⚠️ Depreciado — mantido por compatibilidade com o front |
+| GET | `/metrics` | Métricas Prometheus (histograma de latência) |
 
-### Test Coverage
+## Variáveis de ambiente
 
-To check the test coverage, just run the `coverage run -m pytest tests/*` command from the project root. It will create a folder called `htmlcov` and inside it you just need to open the `index.html` file. The page will look like this:
+Copie `.env.example` para `.env` e ajuste conforme necessário:
 
-![](https://i.imgur.com/HnghuOB.png)
-
-
-If you click on any of the files, you can see which lines are covered.
-
-![](https://i.imgur.com/om0f08w.png)
+| Variável | Padrão | Descrição |
+|----------|--------|-----------|
+| `PORT` | `5000` | Porta exposta pelo container |
+| `MAX_TEXT_LENGTH` | `100000` | Limite de caracteres do texto |
+| `LOG_LEVEL` | `INFO` | Nível de log |
+| `FLASK_DEBUG` | `0` | Debug mode (0 = desligado) |

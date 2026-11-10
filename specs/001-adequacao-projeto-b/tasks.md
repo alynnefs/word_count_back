@@ -105,9 +105,9 @@
 
 **Independent Test**: push ao repositório → workflow passa todas as etapas sem erro.
 
-- [ ] T023 [US5] Criar `.github/workflows/ci.yml` com jobs: `lint` (flake8 app/ tests/), `test` (pytest com --cov=app --cov-fail-under=80), `secrets-scan` (gitleaks/gitleaks-action@v2), `spectral` (stoplight/spectral-action@v0 em docs/openapi.yaml); jobs `lint` e `secrets-scan` em paralelo; `test` após `lint`; `spectral` após `test`
-- [ ] T024 [US5] Remover `.travis.yml` do repositório
-- [ ] T025 [US5] Atualizar badge do CI no `README.md` para apontar para o workflow do GitHub Actions
+- [x] T023 [US5] Criar `.github/workflows/ci.yml` com jobs lint, test, secrets-scan e spectral
+- [x] T024 [US5] Remover `.travis.yml` do repositório
+- [x] T025 [US5] Atualizar badge do CI no `README.md` para o GitHub Actions
 
 **Checkpoint**: push verde no GitHub; badge verde no README; sem referência ao Travis.
 
