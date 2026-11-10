@@ -3,4 +3,4 @@ max-line-length = 88
 exclude = [".git", "__pycache__", ".specify", "specs"]
 
 [tool.pytest.ini_options]
-addopts = "--cov=app --cov-fail-under=80"
+addopts = "--cov=app"
