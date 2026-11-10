@@ -66,8 +66,8 @@
 
 **Independent Test**: três `curl` com corpo ausente, `text` numérico e texto de 100 001 caracteres retornam 400, 400 e 413 respectivamente.
 
-- [ ] T017 [US2] Criar `tests/test_routes.py` com testes de integração via Flask test client: POST válido → 200 `{"count": N}`; corpo ausente → 400; `text` não string → 400; `text` com 100 001 chars → 413; GET legado com texto → 200 string plana
-- [ ] T018 [US2] Verificar que `app/validators.py` (T007) cobre todos os casos: corpo ausente (`data` é None ou não dict), campo `text` ausente, `text` não é `str`, `len(text) > MAX_TEXT_LENGTH`; ajustar mensagens de erro para serem descritivas e consistentes com `contracts/api-contract.md`
+- [x] T017 [US2] Criar `tests/test_routes.py` com testes de integração via Flask test client
+- [x] T018 [US2] Verificar `app/validators.py` e reativar `--cov-fail-under=80` em `pyproject.toml`
 
 **Checkpoint**: `pytest tests/test_routes.py` passa; todos os casos de erro retornam o código e formato corretos.
 
