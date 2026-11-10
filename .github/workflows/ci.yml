@@ -46,4 +46,4 @@ jobs:
       - name: Validate OpenAPI with Spectral
         run: |
           npm install -g @stoplight/spectral-cli
-          spectral lint docs/openapi.yaml
+          spectral lint docs/openapi.yaml --ruleset @stoplight/spectral-oas
