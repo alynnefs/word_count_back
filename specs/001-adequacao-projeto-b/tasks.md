@@ -92,8 +92,8 @@
 
 **Independent Test**: em máquina limpa com Docker, `docker compose up -d && curl http://localhost:5000/count/hello` retorna `1`.
 
-- [ ] T021 [US4] Criar `docker-compose.yml` com serviço `api`: build do `Dockerfile`, porta `5000:5000`, `env_file: .env`, healthcheck `GET /count/` a cada 30s, restart `unless-stopped`
-- [ ] T022 [US4] Adicionar serviço `front` em `docker-compose.yml` com `profiles: [front]` apontando para o diretório do `word_count_front`
+- [x] T021 [US4] Criar `docker-compose.yml` com serviço `api`
+- [x] T022 [US4] Adicionar serviço `front` com `profiles: [front]` em `docker-compose.yml`
 
 **Checkpoint**: `docker compose up --build -d` sobe; `curl http://localhost:5000/count/hello` retorna `1`; `docker compose --profile front up` sobe os dois.
 

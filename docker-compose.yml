@@ -1,0 +1,26 @@
+services:
+  api:
+    build: .
+    ports:
+      - "${PORT:-5001}:5000"
+    env_file:
+      - .env
+    environment:
+      - FLASK_DEBUG=0
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/count/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  # Serviço opcional do front-end — sobe apenas com: docker compose --profile front up
+  # Ajuste o `build` para o caminho do word_count_front no seu ambiente
+  front:
+    build: ../word_count_front
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+    profiles:
+      - front
