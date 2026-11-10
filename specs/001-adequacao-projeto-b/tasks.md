@@ -79,8 +79,8 @@
 
 **Independent Test**: `curl http://localhost:5000/count/hello` retorna `1`; OpenAPI marca o endpoint como `deprecated: true`.
 
-- [ ] T019 [P] [US3] Criar `docs/openapi.yaml` com OpenAPI 3.0: `POST /count` (request body `{"text": string, maxLength: 100000}`, responses 200/400/413), `GET /count/{text}` marcado `deprecated: true`, `GET /metrics` (descrição); validar localmente com `npx @stoplight/spectral-cli lint docs/openapi.yaml` se Node disponível
-- [ ] T020 [P] [US3] Criar `docs/adr/0001-decisao.md` no template MADR: título "Receber texto no corpo de POST em vez de parâmetro de URL", contexto (limite de URL, codificação, logs), opções (GET com path param vs POST com JSON), decisão (POST), consequências (413 possível, GET depreciado, front precisa migrar)
+- [x] T019 [P] [US3] Criar `docs/openapi.yaml` com OpenAPI 3.0
+- [x] T020 [P] [US3] Criar `docs/adr/0001-decisao.md` no template MADR
 
 **Checkpoint**: OpenAPI válido; ADR escrito; GET ainda responde corretamente.
 
