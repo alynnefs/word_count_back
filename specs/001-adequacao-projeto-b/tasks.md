@@ -133,9 +133,9 @@
 
 **Independent Test**: seguir apenas o README em ambiente limpo → API sobe, testes passam, k6 roda.
 
-- [ ] T029 [P] [US7] Reescrever `README.md`: primeira linha declara "Projeto B — Módulo 4"; seções: como subir com Compose, como rodar testes, como rodar lint, como rodar k6, badge do CI, link para ADR e OpenAPI
-- [ ] T030 [P] [US7] Criar `CONTRIBUTORS.md` com nome da autora, lista de commits/PRs relevantes e descrição do que foi feito
-- [ ] T031 [P] [US7] Criar `docs/ia.md` declarando os prompts de IA utilizados, decisões tomadas com base neles e o que foi revisado/ajustado manualmente
+- [x] T029 [P] [US7] Reescrever `README.md` (feito na Phase 7)
+- [x] T030 [P] [US7] Criar `CONTRIBUTORS.md`
+- [x] T031 [P] [US7] Criar `docs/ia.md`
 
 **Checkpoint**: README testado em ambiente limpo (clone novo ou container); todos os arquivos de entrega presentes.
 
