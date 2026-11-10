@@ -45,5 +45,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Validate OpenAPI with Spectral
         run: |
-          npm install -g @stoplight/spectral-cli
-          spectral lint docs/openapi.yaml --ruleset https://unpkg.com/@stoplight/spectral-oas/dist/ruleset.mjs
+          npm install -g @stoplight/spectral-cli @stoplight/spectral-oas
+          spectral lint docs/openapi.yaml
