@@ -1,4 +1,5 @@
 import logging
+import os
 import time
 import uuid
 
@@ -14,7 +15,8 @@ logger = logging.getLogger(__name__)
 def create_app():
     setup_logging()
     app = Flask(__name__)
-    CORS(app, supports_credentials=True)
+    FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:8080")
+    CORS(app, supports_credentials=True, origins=[FRONTEND_URL])
     metrics.init_app(app)
 
     @app.before_request
