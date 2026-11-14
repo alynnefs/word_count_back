@@ -24,7 +24,9 @@
 Escolhi o pattern Service Layer porque era necessário organizar a execução de um caso de uso. Ele funciona como intermediário entre o Controller (rota Flask) e a lógica responsável pelo processamento. A ideia é manter o Controller responsável pelo HTTP e deixar a execução do caso de uso fora dele. 
 
 Fluxo conceitual:
-![image](https://hackmd.io/_uploads/BJB6ANBCMx.png)
+
+<img width="648" height="322" alt="image" src="https://github.com/user-attachments/assets/a52c5334-1d1c-4d35-a537-7f2440a6e681" />
+
 
 # Word Count — Back
 
