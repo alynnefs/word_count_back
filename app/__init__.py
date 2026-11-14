@@ -6,6 +6,7 @@ import uuid
 from flask import Flask, g, request
 from flask_cors import CORS
 
+from app.docs import register_docs
 from app.logging_config import setup_logging
 from app.metrics import metrics
 
@@ -47,5 +48,6 @@ def create_app():
 
     from app.routes import bp
     app.register_blueprint(bp)
+    register_docs(app)
 
     return app

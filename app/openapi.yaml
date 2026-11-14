@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: Word Count API
+  description: API que recebe um texto e retorna a quantidade de palavras.
+  version: 0.0.0
+
+servers:
+  - url: https://word-count-back.vercel.app
+    description: Produção (Vercel)
+  - url: http://127.0.0.1:5000
+    description: Local
+
+paths:
+  /count:
+    post:
+      summary: Conta as palavras de um texto
+      description: >
+        Recebe um texto em JSON e retorna o número de palavras.
+        Espaços extras no início, no fim ou entre as palavras são ignorados.
+      operationId: countWords
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CountRequest"
+            example:
+              text: hello world test
+      responses:
+        "200":
+          description: Quantidade de palavras do texto
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CountResponse"
+              example:
+                count: 3
+
+  /metrics:
+    get:
+      summary: Métricas no formato Prometheus
+      description: Exposto pelo prometheus-flask-exporter.
+      operationId: getMetrics
+      responses:
+        "200":
+          description: Métricas em texto
+          content:
+            text/plain:
+              schema:
+                type: string
+
+components:
+  schemas:
+    CountRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: Texto cujas palavras serão contadas
+          example: hello world test
+    CountResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Número de palavras encontradas
+          example: 3
