@@ -16,7 +16,11 @@ def create_app():
     setup_logging()
     app = Flask(__name__)
 
-    FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:8080").strip().rstrip("/")
+    FRONTEND_URL = (
+        os.environ.get("FRONTEND_URL", "http://localhost:8080")
+        .strip()
+        .rstrip("/")
+    )
     CORS(app, origins=[FRONTEND_URL])
 
     metrics.init_app(app)
