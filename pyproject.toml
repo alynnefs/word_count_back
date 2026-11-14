@@ -19,6 +19,7 @@ dev = [
     "black==22.3.0",
     "flake8==6.1.0",
     "Flake8-pyproject==1.2.3",
+    "flask-swagger-ui>=4.11.1",
 ]
 
 [tool.flake8]
