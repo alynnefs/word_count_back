@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/alynnefs/word_count_back/actions/workflows/ci.yml/badge.svg)](https://github.com/alynnefs/word_count_back/actions/workflows/ci.yml)
 
-[Back](https://word-count-back.vercel.app/) | [Front](https://word-count-front.vercel.app/)
+[Back](https://word-count-back.vercel.app/) | [Front](https://word-count-front.vercel.app/) | [Vídeo explicativo](https://youtu.be/15ViSUgQrx8)
 
 **Tabela de entregas**
 |Módulo| Entregável| Evidência |
